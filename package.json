@@ -9,6 +9,7 @@
   ],
   "nx": {},
   "scripts": {
+    "postinstall": "playwright install chromium",
     "clean": "rimraf --glob packages/*/{dist,dist-tsc,src-generated}",
     "all": "nx affected --target=lint:prettier,lint,build,test",
     "build": "nx run-many --target=build --exclude=root",
