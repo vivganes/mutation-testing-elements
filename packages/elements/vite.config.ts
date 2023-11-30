@@ -53,6 +53,7 @@ export default defineConfig(async ({ mode }) => {
       open: process.env.CI ? undefined : '/testResources/',
     },
     build: {
+       // @ts-expect-error cjs import
       target: browserslistToEsbuild(),
       lib: {
         entry: 'src/index.ts',
