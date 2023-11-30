@@ -53,7 +53,6 @@ export default defineConfig(async ({ mode }) => {
       open: process.env.CI ? undefined : '/testResources/',
     },
     build: {
-      // @ts-expect-error cjs import
       target: browserslistToEsbuild(),
       lib: {
         entry: 'src/index.ts',
@@ -90,7 +89,7 @@ export default defineConfig(async ({ mode }) => {
         enabled: true,
         provider: 'playwright',
         // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-        headless: !!(process.env.CI || process.env.HEADLESS),
+        headless: Boolean(process.env.CI || process.env.HEADLESS),
       },
     },
   } satisfies UserConfig;
