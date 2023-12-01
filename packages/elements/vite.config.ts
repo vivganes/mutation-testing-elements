@@ -53,7 +53,7 @@ export default defineConfig(async ({ mode }) => {
       open: process.env.CI ? undefined : '/testResources/',
     },
     build: {
-       // @ts-expect-error cjs import
+      // @ts-expect-error cjs import
       target: browserslistToEsbuild(),
       lib: {
         entry: 'src/index.ts',
@@ -85,6 +85,10 @@ export default defineConfig(async ({ mode }) => {
       restoreMocks: true,
       globals: true,
       include: ['test/unit/**/*.spec.ts'],
+      coverage: {
+        provider: 'istanbul',
+        reportsDirectory: 'reports/coverage'
+      },
       browser: {
         name: 'chromium',
         enabled: true,
