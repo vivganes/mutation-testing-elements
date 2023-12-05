@@ -80,14 +80,14 @@ export default defineConfig(async ({ mode }) => {
         if (log.includes('Multiple versions of Lit loaded.')) return;
         return;
       },
-      ...(process.env.CI ? { maxConcurrency: 1, threads: false, singleThread: true, retry: 2, isolate: false } : {}),
+      ...(process.env.CI ? { maxConcurrency: 1, retry: 2 } : {}),
       setupFiles: ['./test/unit/setup.ts'],
       restoreMocks: true,
       globals: true,
       include: ['test/unit/**/*.spec.ts'],
       coverage: {
         provider: 'istanbul',
-        reportsDirectory: 'reports/coverage'
+        reportsDirectory: 'reports/coverage',
       },
       browser: {
         name: 'chromium',
@@ -95,6 +95,7 @@ export default defineConfig(async ({ mode }) => {
         provider: 'playwright',
         // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
         headless: Boolean(process.env.CI || process.env.HEADLESS),
+        slowHijackESM: true,
       },
     },
   } satisfies UserConfig;
