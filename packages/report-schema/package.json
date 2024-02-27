@@ -1,6 +1,6 @@
 {
   "name": "mutation-testing-report-schema",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "The json schema for a mutation testing report.",
   "main": "dist/src/index.js",
   "type": "module",
@@ -21,7 +21,7 @@
     "name": "report-schema"
   },
   "scripts": {
-    "test": "mocha --forbid-only --forbid-pending -r source-map-support/register dist/test/**/*.js",
+    "test": "mocha --node-option \"enable-source-maps\" --forbid-only --forbid-pending dist/test/**/*.js",
     "postpublish": "PUBLISH_SCHEMA=true ../metrics-scala/npmProjPublish.sh",
     "generate": "node ../../tasks/schema2ts.mjs src/mutation-testing-report-schema.json src-generated/schema.ts",
     "lint": "eslint --ext .js,.ts ."
